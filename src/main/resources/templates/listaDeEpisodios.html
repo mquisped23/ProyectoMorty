@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <br><br>
+
+    <h1 class="text-primary text-center">Lista de Episodios</h1><br><br>
+    <table class="table align-middle" >
+        <thead>
+        <tr>
+            <th class="text-center">id</th>
+            <th class="text-center">name</th>
+            <th class="text-center">air_date</th>
+            <th class="text-center">episode</th>
+            <th class="text-center">character</th>
+            <th class="text-center">url</th>
+            <th class="text-center">created</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="episode : ${episodes}">
+            <td class="text-center" th:text="${episode.id}"></td>
+            <td class="text-center" th:text="${episode.name}"></td>
+            <td class="text-center" th:text="${episode.air_date}"></td>
+            <td class="text-center" th:text="${episode.episode}"></td>
+            <td class="text-center">
+            <span  th:each="caracter : ${episode.characters}" >
+                <a th:text="'Id de personaje es:' +${caracter}" th:href="@{/personaje/} + ${caracter}"></a><br>
+            </span>
+            </td>
+            <td class="text-center" th:text="${episode.url}"></td>
+            <td class="text-center" th:text="${episode.created}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" th:href="@{/paginar/} + ${1}">Previous</a></li>
+            <li class="page-item"><a class="page-link" th:href="@{/paginar/} + ${2}">Next</a></li>
+        </ul>
+    </nav>
+</body>
+</html>
